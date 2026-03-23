@@ -3,75 +3,349 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Trip to Japan? — Travel Tips & Manners Guide</title>
+<title>Trip to Japan? — The things guidebooks don't tell you</title>
+<meta name="description" content="80 real-life scenarios that teach you unwritten Japanese customs. Know the culture, enjoy it more.">
+<meta property="og:title" content="Trip to Japan?">
+<meta property="og:description" content="The things guidebooks don't tell you. A little cultural charm to make your trip smoother.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://trip-to-japan.app">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
 <style>
   :root {
     --vermillion: #D4513B;
-    --vermillion-light: #F9EBE8;
+    --vermillion-dark: #C84535;
+    --vermillion-glow: rgba(212, 81, 59, 0.15);
     --ink: #1a1a1a;
     --ink-secondary: #6b7280;
+    --ink-tertiary: #9ca3af;
     --paper: #FAFAF8;
+    --paper-warm: #FFF5F2;
+    --card: #ffffff;
     --border: #e5e5e3;
+    --success: #059669;
   }
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
+
   body {
-    font-family: 'DM Sans', system-ui, sans-serif;
+    font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
     background: var(--paper);
     color: var(--ink);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* === HERO === */
+  .hero {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 2rem;
-    -webkit-font-smoothing: antialiased;
+    padding: 2rem 1.5rem;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(180deg, var(--paper-warm) 0%, var(--paper) 40%);
   }
-  .logo {
-    font-family: 'DM Serif Display', serif;
-    font-size: 2.5rem;
-    color: var(--vermillion);
-    margin-bottom: 0.5rem;
-  }
-  .tagline {
-    font-size: 1.125rem;
-    color: var(--ink-secondary);
-    margin-bottom: 2rem;
-    max-width: 400px;
-  }
-  .cta {
-    display: inline-block;
+
+  /* Subtle decorative circles */
+  .hero::before,
+  .hero::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.04;
     background: var(--vermillion);
-    color: white;
-    padding: 0.875rem 2rem;
-    border-radius: 12px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 1rem;
-    transition: background 0.2s;
+    pointer-events: none;
   }
-  .cta:hover { background: #A33D2B; }
-  .links {
+  .hero::before {
+    width: 500px; height: 500px;
+    top: -200px; right: -150px;
+  }
+  .hero::after {
+    width: 350px; height: 350px;
+    bottom: -100px; left: -120px;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 440px;
+    animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Omamori icon */
+  .omamori {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 1.5rem;
+    animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+  }
+  .omamori img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 8px 24px var(--vermillion-glow));
+  }
+
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.75rem;
+    font-weight: 400;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+    animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+  }
+
+  .hero .tagline {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: var(--ink-secondary);
+    margin-bottom: 0.5rem;
+    animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
+  }
+
+  .hero .sub {
+    font-size: 0.9375rem;
+    color: var(--ink-tertiary);
+    margin-bottom: 2.5rem;
+    animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+  }
+
+  /* === EMAIL FORM === */
+  .notify-form {
+    width: 100%;
+    max-width: 380px;
+    animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
+  }
+
+  .form-row {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .form-row input[type="email"] {
+    flex: 1;
+    padding: 0.875rem 1rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9375rem;
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    background: var(--card);
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-row input[type="email"]:focus {
+    border-color: var(--vermillion);
+  }
+  .form-row input[type="email"]::placeholder {
+    color: var(--ink-tertiary);
+  }
+
+  .form-row button {
+    padding: 0.875rem 1.5rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    background: var(--vermillion);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s, transform 0.1s;
+  }
+  .form-row button:hover {
+    background: var(--vermillion-dark);
+  }
+  .form-row button:active {
+    transform: scale(0.97);
+  }
+  .form-row button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .form-msg {
+    margin-top: 0.75rem;
+    font-size: 0.8125rem;
+    min-height: 1.2em;
+  }
+  .form-msg.success { color: var(--success); }
+  .form-msg.error { color: var(--vermillion); }
+
+  .form-note {
+    margin-top: 0.5rem;
+    font-size: 0.75rem;
+    color: var(--ink-tertiary);
+  }
+
+  /* === FEATURES === */
+  .features {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
     margin-top: 3rem;
+    animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.5s both;
+  }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.5rem 0.875rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 999px;
     font-size: 0.8125rem;
     color: var(--ink-secondary);
+    font-weight: 500;
   }
-  .links a {
-    color: var(--ink-secondary);
+
+  /* === FOOTER === */
+  .footer {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    font-size: 0.8125rem;
+    color: var(--ink-tertiary);
+    border-top: 1px solid var(--border);
+  }
+  .footer a {
+    color: var(--ink-tertiary);
     text-decoration: none;
-    margin: 0 0.5rem;
+    transition: color 0.2s;
   }
-  .links a:hover { color: var(--vermillion); }
+  .footer a:hover { color: var(--vermillion); }
+  .footer .copy {
+    margin-top: 0.75rem;
+    font-size: 0.75rem;
+  }
+
+  /* === RESPONSIVE === */
+  @media (max-width: 480px) {
+    .hero h1 { font-size: 2.25rem; }
+    .form-row {
+      flex-direction: column;
+    }
+    .form-row button {
+      width: 100%;
+    }
+    .omamori { width: 100px; height: 100px; }
+  }
 </style>
 </head>
 <body>
-  <div class="logo">Trip to Japan?</div>
-  <p class="tagline">Learn Japanese etiquette before you go. 41 real-life scenarios to help you travel with confidence.</p>
-  <a href="#" class="cta">Coming Soon on the App Store</a>
-  <div class="links">
-    <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <a href="/support">Support</a>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="omamori">
+      <img src="/icon.png" alt="Trip to Japan? omamori icon" width="120" height="120">
+    </div>
+
+    <h1>Trip to Japan?</h1>
+
+    <p class="tagline">The things guidebooks don't tell you.</p>
+    <p class="sub">80 real-life scenarios. A little cultural charm to make your trip smoother.</p>
+
+    <div class="notify-form">
+      <div class="form-row">
+        <input type="email" id="email" placeholder="your@email.com" autocomplete="email" required>
+        <button type="button" id="submitBtn" onclick="submitEmail()">Notify me</button>
+      </div>
+      <div class="form-msg" id="formMsg"></div>
+      <p class="form-note">One email at launch. No spam, ever.</p>
+    </div>
+
+    <div class="features">
+      <span class="pill">🎌 80 quiz scenarios</span>
+      <span class="pill">🧠 Learn the "why"</span>
+      <span class="pill">🗾 Trip countdown</span>
+      <span class="pill">✨ Free to start</span>
+    </div>
   </div>
+</section>
+
+<footer class="footer">
+  <a href="/">Trip to Japan?</a> · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <a href="/support">Support</a>
+  <div class="copy">© 2026 Trip to Japan?</div>
+</footer>
+
+<script>
+  // =============================================
+  // EMAIL COLLECTION via Supabase
+  // =============================================
+  // TODO: Replace with your Supabase project URL and anon key
+  const SUPABASE_URL = 'https://rstxlqyovbydmueeyoif.supabase.co';
+  const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY_HERE';  // <-- Replace this
+
+  async function submitEmail() {
+    const input = document.getElementById('email');
+    const btn = document.getElementById('submitBtn');
+    const msg = document.getElementById('formMsg');
+    const email = input.value.trim().toLowerCase();
+
+    // Validate
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      msg.textContent = 'Please enter a valid email.';
+      msg.className = 'form-msg error';
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = '...';
+    msg.textContent = '';
+
+    try {
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/launch_emails`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': SUPABASE_ANON_KEY,
+          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+          'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify({ email })
+      });
+
+      if (res.ok || res.status === 201) {
+        msg.textContent = "You're in! We'll let you know at launch 🎌";
+        msg.className = 'form-msg success';
+        input.value = '';
+        btn.textContent = 'Done ✓';
+      } else if (res.status === 409) {
+        // Duplicate
+        msg.textContent = "You're already on the list!";
+        msg.className = 'form-msg success';
+        btn.textContent = 'Notify me';
+        btn.disabled = false;
+      } else {
+        throw new Error(`${res.status}`);
+      }
+    } catch (e) {
+      msg.textContent = 'Something went wrong. Try again?';
+      msg.className = 'form-msg error';
+      btn.textContent = 'Notify me';
+      btn.disabled = false;
+    }
+  }
+
+  // Submit on Enter
+  document.getElementById('email').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') submitEmail();
+  });
+</script>
+
 </body>
 </html>

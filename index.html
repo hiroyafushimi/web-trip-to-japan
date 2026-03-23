@@ -9,6 +9,7 @@
 <meta property="og:description" content="The things guidebooks don't tell you. A little cultural charm to make your trip smoother.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://trip-to-japan.app">
+<meta property="og:image" content="https://trip-to-japan.app/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
 <style>
@@ -283,12 +284,8 @@
 </footer>
 
 <script>
-  // =============================================
-  // EMAIL COLLECTION via Supabase
-  // =============================================
-  // TODO: Replace with your Supabase project URL and anon key
   const SUPABASE_URL = 'https://rstxlqyovbydmueeyoif.supabase.co';
-  const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY_HERE';  // <-- Replace this
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJzdHhscXlvdmJ5ZG11ZWV5b2lmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQwMTY1NDIsImV4cCI6MjA4OTU5MjU0Mn0.9_MFBTfYbxZ4f9TMn38oPY3AfP6sAvaSd1yav6sUFPw';
 
   async function submitEmail() {
     const input = document.getElementById('email');

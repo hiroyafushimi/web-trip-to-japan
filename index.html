@@ -123,73 +123,34 @@
     animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
   }
 
-  /* === EMAIL FORM === */
-  .notify-form {
-    width: 100%;
-    max-width: 380px;
+  /* === APP STORE BADGE === */
+  .store-badge {
     animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
+    margin-bottom: 0.75rem;
   }
 
-  .form-row {
-    display: flex;
-    gap: 0.5rem;
+  .store-badge a {
+    display: inline-block;
+    transition: transform 0.15s ease, opacity 0.15s ease;
   }
 
-  .form-row input[type="email"] {
-    flex: 1;
-    padding: 0.875rem 1rem;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.9375rem;
-    border: 1.5px solid var(--border);
-    border-radius: 12px;
-    background: var(--card);
-    color: var(--ink);
-    outline: none;
-    transition: border-color 0.2s;
-  }
-  .form-row input[type="email"]:focus {
-    border-color: var(--vermillion);
-  }
-  .form-row input[type="email"]::placeholder {
-    color: var(--ink-tertiary);
+  .store-badge a:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
   }
 
-  .form-row button {
-    padding: 0.875rem 1.5rem;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.9375rem;
-    font-weight: 700;
-    background: var(--vermillion);
-    color: #fff;
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    white-space: nowrap;
-    transition: background 0.2s, transform 0.1s;
-  }
-  .form-row button:hover {
-    background: var(--vermillion-dark);
-  }
-  .form-row button:active {
+  .store-badge a:active {
     transform: scale(0.97);
   }
-  .form-row button:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
+
+  .store-badge img {
+    height: 54px;
   }
 
-  .form-msg {
-    margin-top: 0.75rem;
+  .store-note {
     font-size: 0.8125rem;
-    min-height: 1.2em;
-  }
-  .form-msg.success { color: var(--success); }
-  .form-msg.error { color: var(--vermillion); }
-
-  .form-note {
-    margin-top: 0.5rem;
-    font-size: 0.75rem;
     color: var(--ink-tertiary);
+    animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both;
   }
 
   /* === FEATURES === */
@@ -198,7 +159,7 @@
     gap: 1rem;
     justify-content: center;
     flex-wrap: wrap;
-    margin-top: 3rem;
+    margin-top: 2.5rem;
     animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.5s both;
   }
 
@@ -237,12 +198,6 @@
   /* === RESPONSIVE === */
   @media (max-width: 480px) {
     .hero h1 { font-size: 2.25rem; }
-    .form-row {
-      flex-direction: column;
-    }
-    .form-row button {
-      width: 100%;
-    }
     .omamori { width: 100px; height: 100px; }
   }
 </style>
@@ -258,16 +213,14 @@
     <h1>Trip to Japan?</h1>
 
     <p class="tagline">The things guidebooks don't tell you.</p>
-    <p class="sub">80 real-life scenarios. A little cultural charm to make your trip smoother.</p>
+    <p class="sub">80 real-life scenarios. Free to start, no account needed.</p>
 
-    <div class="notify-form">
-      <div class="form-row">
-        <input type="email" id="email" placeholder="your@email.com" autocomplete="email" required>
-        <button type="button" id="submitBtn" onclick="submitEmail()">Notify me</button>
-      </div>
-      <div class="form-msg" id="formMsg"></div>
-      <p class="form-note">One email at launch. No spam, ever.</p>
+    <div class="store-badge">
+      <a href="https://apps.apple.com/app/id6760936750" target="_blank" rel="noopener">
+        <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us" alt="Download on the App Store" height="54">
+      </a>
     </div>
+    <p class="store-note">Free on iOS</p>
 
     <div class="features">
       <span class="pill">🎌 80 quiz scenarios</span>
@@ -282,67 +235,6 @@
   <a href="/">Trip to Japan?</a> · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <a href="/support">Support</a>
   <div class="copy">© 2026 Trip to Japan?</div>
 </footer>
-
-<script>
-  const SUPABASE_URL = 'https://rstxlqyovbydmueeyoif.supabase.co';
-  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJzdHhscXlvdmJ5ZG11ZWV5b2lmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQwMTY1NDIsImV4cCI6MjA4OTU5MjU0Mn0.9_MFBTfYbxZ4f9TMn38oPY3AfP6sAvaSd1yav6sUFPw';
-
-  async function submitEmail() {
-    const input = document.getElementById('email');
-    const btn = document.getElementById('submitBtn');
-    const msg = document.getElementById('formMsg');
-    const email = input.value.trim().toLowerCase();
-
-    // Validate
-    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      msg.textContent = 'Please enter a valid email.';
-      msg.className = 'form-msg error';
-      return;
-    }
-
-    btn.disabled = true;
-    btn.textContent = '...';
-    msg.textContent = '';
-
-    try {
-      const res = await fetch(`${SUPABASE_URL}/rest/v1/launch_emails`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'apikey': SUPABASE_ANON_KEY,
-          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-          'Prefer': 'return=minimal'
-        },
-        body: JSON.stringify({ email })
-      });
-
-      if (res.ok || res.status === 201) {
-        msg.textContent = "You're in! We'll let you know at launch 🎌";
-        msg.className = 'form-msg success';
-        input.value = '';
-        btn.textContent = 'Done ✓';
-      } else if (res.status === 409) {
-        // Duplicate
-        msg.textContent = "You're already on the list!";
-        msg.className = 'form-msg success';
-        btn.textContent = 'Notify me';
-        btn.disabled = false;
-      } else {
-        throw new Error(`${res.status}`);
-      }
-    } catch (e) {
-      msg.textContent = 'Something went wrong. Try again?';
-      msg.className = 'form-msg error';
-      btn.textContent = 'Notify me';
-      btn.disabled = false;
-    }
-  }
-
-  // Submit on Enter
-  document.getElementById('email').addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') submitEmail();
-  });
-</script>
 
 </body>
 </html>
